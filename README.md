@@ -8,15 +8,15 @@ Je suis en train de créer un portfolio interactif qui simule l'expérience d'un
 
 **Actuellement en développement** 🚀
 
-Je travaille activement sur ce projet pour qu'il soit à la fois fonctionnel et immersif, permettant aux visiteurs de naviguer dans mon portfolio en utilisant des commandes comme dans un vrai terminal.
+Je travaille sur ce projet pour qu'il soit à la fois fonctionnel et immersif, permettant aux visiteurs de naviguer dans mon portfolio en utilisant des commandes comme dans un vrai terminal.
 
 ## Fonctionnalités prévues
 
-- 🔍 **Navigation via des commandes** : Les visiteurs pourront taper des commandes pour afficher les sections du portfolio (ex : `about`, `projects`, `skills`).
+- 🔍 **Navigation via des commandes** : Les visiteurs pourront taper des commandes pour afficher les sections du portfolio (ex : `about me`, `projects`, `help`).
 - 💡 **Système de commandes simplifié** : Un ensemble de commandes pré-définies permettra une interaction fluide.
 - 🎨 **Design minimaliste** : Inspiré des terminaux classiques pour une présentation élégante et sans distraction.
 
 ## Technologies utilisées
 
-- **HTML/CSS/JavaScript** pour l'interface utilisateur
+- **HTML/CSS/JavaScript**
 
