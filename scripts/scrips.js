@@ -27,27 +27,17 @@ const config = {
 'projects within a dynamic company.'				
 };
 
-
-
-
 async function Loading(callback) {
     var dots = ['.', '..', '...', '....'];
     var outputElement = document.getElementById('output');
-
-   
     for (let i = 0; i < 5; i++) {
-        outputElement.innerHTML = "Loading" + dots[i % dots.length];
-        
-       
+        outputElement.innerHTML = "Loading" + dots[i % dots.length];      
         await new Promise(resolve => setTimeout(resolve, 500));
     }
-
-    
     callback();
 }
 
 window.onload = function() {
-    
     Loading(function() {
         config.outputElement.innerHTML = config.welcomeText;
     });
