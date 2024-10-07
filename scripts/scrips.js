@@ -30,6 +30,7 @@ const config = {
 async function Loading(callback) {
     var dots = ['.', '..', '...', '....'];
     var outputElement = document.getElementById('output');
+	
     for (let i = 0; i < 5; i++) {
         outputElement.innerHTML = "Loading" + dots[i % dots.length];      
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -42,3 +43,6 @@ window.onload = function() {
         config.outputElement.innerHTML = config.welcomeText;
     });
 };
+
+
+

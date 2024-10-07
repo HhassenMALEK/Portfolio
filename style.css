@@ -9,6 +9,18 @@ html, body {
 	white-space: pre-wrap;	
 }
 
+input {
+	height: 50px;
+	width: 100vw;
+	position: relative;
+}
+
+
+
+
+
+
+
 
 
 
