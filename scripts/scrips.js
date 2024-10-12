@@ -23,8 +23,10 @@ const config = {
 'I am currently pursuing a second training program at Diginamic, which I started in September 2024, to specialize in the Full Stack Java ecosystem.  <br>' +
 'This training aims to strengthen my skills and deepen my mastery of Java technologies. I will take my RNCP Level 6 exam in June 2025. <br>' +
 
-'As part of this journey, I am seeking a 2.5-month internship starting in late January 2025, where I can apply my skills and contribute to ambitious  <br>' +
-'projects within a dynamic company.'				
+'As part of this journey, I am seeking a 2.5-month internship starting in late January 2025, where I can apply my skills and contribute to ambitious <br>' +
+'projects within a dynamic company.<br><br><br>'
+
+
 };
 
 async function Loading(callback) {
@@ -41,8 +43,25 @@ async function Loading(callback) {
 window.onload = function() {
     Loading(function() {
         config.outputElement.innerHTML = config.welcomeText;
+        document.getElementById('input-field').disabled = false;  // Activer l'entrée
     });
 };
 
+document.getElementById('commandInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        let input = this.value.trim().toLowerCase();
+        if (commands[input]) {
+            let result = commands[input]();
+            if (input === 'clear') {
+                config.outputElement.innerHTML = '';  // Efface la sortie
+            } else {
+                config.outputElement.innerHTML += result + '<br>';  // Affiche le résultat
+            }
+        } else {
+            config.outputElement.innerHTML += 'Unknown command: ' + input + '<br>';
+        }
+        this.value = '';  
+    }
+});
 
 
