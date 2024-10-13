@@ -44,10 +44,12 @@ const commands = {
     exit: function exit() {
         console.warn('Executing "exit" command');
         window.location.replace("https://github.com/HhassenMALEK");
+        return ''; 
     },
     contact: function contact() {
         console.warn('Executing "contact" command');
         outputElement.innerHTML += '<p>You can contact me at <a href="mailto:h.hassen.malek@gmail.com">h.hassen.malek@gmail.com</a>.</p>';
+        return ''; 
     },
     clear: function clear() {
         console.warn('Executing "clear" command');
