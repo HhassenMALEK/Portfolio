@@ -129,31 +129,44 @@ html, body {
 	border-top: 2px dashed #fff;
 }
 
-#output table {
-	border-collapse: collapse;
-	border: 2px dashed #fff;
-}
-
-#output table tr {
-	border: 1px dashed #fff;
-}
-
 #output table th {
-	color: yellow;
-	font-weight: bold;
-	text-align: left;
-	padding: 15px;
-	border: 2px dashed #fff;
+    background: rgba(50, 50, 50, 0.9); /* Fond plus clair pour l'en-tête */
+    color: yellow; /* Couleur dorée pour le texte de l'en-tête */
+    font-weight: bold; /* Met le texte de l'en-tête en gras */
+    text-align: left; /* Alignement à gauche */
+    padding: 15px; /* Espace autour du texte dans les cellules d'en-tête */
+    border-bottom: 2px solid yellow; /* Bordure inférieure dorée pour l'en-tête */
 }
 
 #output table td {
-	min-width: 250px;
-	border: 2px dashed #fff;
-	padding: 15px;
+    min-width: 250px; /* Largeur minimale pour les cellules */
+    padding: 15px; /* Espace autour du contenu des cellules */
+    color: #fff; /* Couleur blanche pour le texte */
+    border: 1px solid #fff; /* Bordure blanche pour les cellules */
 }
 
-#output table td.id {
-	min-width: auto;
+#output table tr:nth-child(even) {
+    background: rgba(40, 40, 40, 0.8); /* Fond pour les lignes paires */
+}
+
+#output table tr:nth-child(odd) {
+    background: rgba(30, 30, 30, 0.8); /* Fond pour les lignes impaires */
+}
+
+#output table tr:hover {
+    background: rgba(255, 204, 0, 0.2); /* Fond jaune clair au survol des lignes */
+}
+
+#output .highlight {
+    color: yellow; /* Met en valeur les éléments importants */
+}
+
+#output .error {
+    color: red; /* Couleur rouge pour les messages d'erreur */
+}
+
+#output .success {
+    color: cyan; /* Couleur cyan pour les messages de succès */
 }
 
 #output .highlight {

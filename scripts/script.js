@@ -30,6 +30,7 @@ const config = {
 };
 
 
+
 const commands = {
     init: function init() {
         console.warn('Initializing ...');
@@ -56,8 +57,8 @@ const commands = {
                 '<td>Display a list of projects.</td>' +
             '<tr>' +
             '<tr>' +
-                '<td>about</td>' +
-                '<td>Learn more about the developer.</td>' +
+                '<td>cv</td>' +
+                '<td>View my CV.</td>' +
             '<tr>' +
             '<tr>' +
                 '<td>contact</td>' +
@@ -100,6 +101,10 @@ const commands = {
                     '<td>I gathered all festivals taking place in the Pays de la Loire on a map by connecting to the French government s API en français .</td>' +
             
             '</table>';
+    },
+    cv: function cv() {
+        console.warn('Executing "cv" command');
+        window.open('src/monCv.pdf', '_blank');  
     }
 };     
 
