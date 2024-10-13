@@ -32,6 +32,10 @@ const commands = {
                 '<td>Contact by E-mail.</td>' +
             '</tr>' +
             '<tr>' +
+                '<td>likedin</td>' +
+                '<td>Link to my LinkedIn profile.</td>' +
+            '</tr>' +
+            '<tr>' +
                 '<td>clear</td>' +
                 '<td>Clear the terminal window.</td>' +
             '</tr>' +
@@ -74,6 +78,11 @@ const commands = {
     cv: function cv() {
         console.warn('Executing "cv" command');
         window.open('src/monCv.pdf', '_blank');  
+        return ''; 
+    }, 
+    linkedin: function linkedin() {
+        console.warn('Executing "linkedin" command');
+        config.outputElement.innerHTML += '<p>You can find my LinkedIn profile <a href="https://www.linkedin.com/in/hassenmalek/" target="_blank">here</a>.</p>';
         return ''; 
     }
 }; 
