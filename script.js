@@ -26,10 +26,8 @@ const config = {
         'I am currently pursuing a second training program at Diginamic, which I started in September 2024, to specialize in the Full Stack Java ecosystem.  <br>' +
         'This training aims to strengthen my skills and deepen my mastery of Java technologies. I will take my RNCP Level 6 exam in June 2025. <br>' +
         'As part of this journey, I am seeking a 2.5-month internship starting in late January 2025, where I can apply my skills and contribute to ambitious projects within a dynamic company.<br><br><br>' +
-        'Type "help" to display list of available commands. Type "exit" to leave the terminal.<br>'
+        'Type "help" to display list of available commands. Type "exit" to leave the terminal.<br><br><br>'
 };
-
-
 
 const commands = {
     init: function init() {
@@ -47,31 +45,31 @@ const commands = {
             '<tr>' +
                 '<th>Command</th>' +
                 '<th>Description</th>' +
-            '<tr>' +
+            '</tr>' +
             '<tr>' +
                 '<td>help</td>' +
                 '<td>Display a list of available commands.</td>' +
-            '<tr>' +
+            '</tr>' +
             '<tr>' +
                 '<td>projects</td>' +
                 '<td>Display a list of projects.</td>' +
-            '<tr>' +
+            '</tr>' +
             '<tr>' +
                 '<td>cv</td>' +
                 '<td>View my CV.</td>' +
-            '<tr>' +
+            '</tr>' +
             '<tr>' +
                 '<td>contact</td>' +
-                '<td>Contact by E-mail</td>' +
-            '<tr>' +
+                '<td>Contact by E-mail.</td>' +
+            '</tr>' +
             '<tr>' +
                 '<td>clear</td>' +
                 '<td>Clear the terminal window.</td>' +
-            '<tr>' +
+            '</tr>' +
             '<tr>' +
                 '<td>exit</td>' +
                 '<td>Leave the terminal.</td>' +
-            '<tr>' +
+            '</tr>' +
         '</table>';
     },
     exit: function exit() {
@@ -80,7 +78,7 @@ const commands = {
     },
     contact: function contact() {
         console.warn('Executing "contact" command');
-        outputElement.innerHTML += '<p>You can contact me at  <a href="h.hassen.malek@gmail.com">h.hassen.malek@gmail.com</a> .</p>';
+        outputElement.innerHTML += '<p>You can contact me at <a href="mailto:h.hassen.malek@gmail.com">h.hassen.malek@gmail.com</a>.</p>';
     },
     clear: function clear() {
         console.warn('Executing "clear" command');
@@ -97,14 +95,15 @@ const commands = {
                 '</tr>' + 
                 '<tr>' +
                     '<td class="id">1</td>' +
-                    '<td><a href="https://hhassenmalek.github.io/Festivals-Pays-de-la-Loire/" target="_blank">Festivals Pays  de LA loire</a></td>' +
-                    '<td>I gathered all festivals taking place in the Pays de la Loire on a map by connecting to the French government s API en français .</td>' +
-            
+                    '<td><a href="https://hhassenmalek.github.io/Festivals-Pays-de-la-Loire/" target="_blank">Festivals Pays de la Loire</a></td>' +
+                    '<td>I gathered all festivals taking place in the Pays de la Loire on a map by connecting to the French government API.</td>' +
+                '</tr>' +
             '</table>';
     },
     cv: function cv() {
         console.warn('Executing "cv" command');
         window.open('src/monCv.pdf', '_blank');  
+        return ''; 
     }
 };     
 
@@ -129,14 +128,13 @@ document.getElementById('input-field').addEventListener('keydown', function(e) {
         let input = this.value.trim().toLowerCase();
         if (commands[input]) {
             let result = commands[input]();
-            if (input === 'clear') {
-                config.outputElement.innerHTML = '';  // Efface la sortie
-            } else {
+            // Pas besoin d'afficher le résultat pour la commande "cv"
+            if (input !== 'clear') {
                 config.outputElement.innerHTML += result + '<br>';  // Affiche le résultat
             }
         } else {
             config.outputElement.innerHTML += 'Unknown command: ' + input + '<br>';
         }
-        this.value = '';  // Réinitialise le champ
+        this.value = '';  
     }
 });
