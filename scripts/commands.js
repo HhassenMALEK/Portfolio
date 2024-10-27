@@ -32,7 +32,7 @@ const commands = {
                 '<td>Contact by E-mail.</td>' +
             '</tr>' +
             '<tr>' +
-                '<td>likedin</td>' +
+                '<td>linkedin</td>' +
                 '<td>Link to my LinkedIn profile.</td>' +
             '</tr>' +
             '<tr>' +
