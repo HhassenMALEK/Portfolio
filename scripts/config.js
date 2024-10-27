@@ -3,7 +3,7 @@
 const outputElement = document.getElementById('output');
 const inputElement = document.getElementById('input-field');
 
-
+// Configuration de l'interface
 const config = {
     outputElement: outputElement,
     welcomeText:  ''+
