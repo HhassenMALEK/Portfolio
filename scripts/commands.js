@@ -5,12 +5,14 @@ const commands = {
             outputElement.innerHTML = config.welcomeText;
             inputElement.removeAttribute("disabled");
             inputElement.focus();
+           
+            outputElement.scrollTop = outputElement.scrollHeight;
         });
     },
     help: function help() {
         console.warn('Executing "help" command');
-        return ''+
-        '<table>'+
+        const result = '' +
+        '<table>' +
             '<tr>' +
                 '<th>Command</th>' +
                 '<th>Description</th>' +
@@ -44,6 +46,10 @@ const commands = {
                 '<td>Leave the terminal.</td>' +
             '</tr>' +
         '</table>';
+
+        outputElement.innerHTML += result + '<br>'; 
+        outputElement.scrollTop = outputElement.scrollHeight; 
+        return ''; // Retournez une chaîne vide
     },
     exit: function exit() {
         console.warn('Executing "exit" command');
@@ -53,15 +59,17 @@ const commands = {
     contact: function contact() {
         console.warn('Executing "contact" command');
         outputElement.innerHTML += '<p>You can contact me at <a href="mailto:h.hassen.malek@gmail.com">h.hassen.malek@gmail.com</a>.</p>';
+        outputElement.scrollTop = outputElement.scrollHeight; 
         return ''; 
     },
     clear: function clear() {
         console.warn('Executing "clear" command');
-        config.outputElement.innerHTML = '';
+        outputElement.innerHTML = '';
+        return ''; 
     },
     projects: function projects() {
         console.warn('Executing "projects" command');
-        return '' +
+        const result = '' +
             '<table>' +
                 '<tr>' +
                     '<th>ID</th>' +
@@ -74,15 +82,20 @@ const commands = {
                     '<td>I gathered all festivals taking place in the Pays de la Loire on a map by connecting to the French government API.</td>' +
                 '</tr>' +
             '</table>';
+        
+        outputElement.innerHTML += result + '<br>'; 
+        outputElement.scrollTop = outputElement.scrollHeight; 
+        return ''; 
     },
     cv: function cv() {
         console.warn('Executing "cv" command');
         window.open('src/monCv.pdf', '_blank');  
+        outputElement.scrollTop = outputElement.scrollHeight; 
         return ''; 
     }, 
     linkedin: function linkedin() {
         console.warn('Executing "linkedin" command');
-        config.outputElement.innerHTML += '<p>You can find my LinkedIn profile <a href="https://www.linkedin.com/in/hassenmalek/" target="_blank">here</a>.</p>';
-        return ''; 
+        outputElement.innerHTML += '<p>You can find my LinkedIn profile <a href="https://www.linkedin.com/in/hassenmalek/" target="_blank">here</a>.</p>';
+        outputElement.scrollTop = outputElement.scrollHeight; // Faites défiler vers le bas
     }
-}; 
+};
