@@ -97,6 +97,7 @@ const commands = {
         console.warn('Executing "linkedin" command');
         outputElement.innerHTML += '<p>You can find my LinkedIn profile <a href="https://www.linkedin.com/in/hassenmalek/" target="_blank">here</a>.</p>';
         outputElement.scrollTop = outputElement.scrollHeight;
-        return '';  
+        return ''; 
+         
     }
 };
