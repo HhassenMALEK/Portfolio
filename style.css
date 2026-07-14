@@ -2,11 +2,51 @@
 	box-sizing: border-box;
 }
 
+:root {
+	--bg: #000;
+	--fg: #fff;
+	--input-bg: #1a1a1a;
+	--highlight: yellow;
+	--success: cyan;
+	--error: red;
+	--table-header-bg: rgba(50, 50, 50, 0.9);
+	--table-header-color: yellow;
+	--table-header-border: yellow;
+	--table-td-border: #fff;
+	--table-even: rgba(40, 40, 40, 0.8);
+	--table-odd: rgba(30, 30, 30, 0.8);
+	--table-hover: rgba(255, 204, 0, 0.2);
+	--link-color: #fff;
+	--link-hover: yellow;
+	--hr-color: #fff;
+	--prompt-color: cyan;
+}
+
+body.light {
+	--bg: #f0f0f0;
+	--fg: #111;
+	--input-bg: #ddd;
+	--highlight: #8B6914;
+	--success: #006666;
+	--error: #cc0000;
+	--table-header-bg: rgba(200, 200, 200, 0.9);
+	--table-header-color: #8B6914;
+	--table-header-border: #8B6914;
+	--table-td-border: #999;
+	--table-even: rgba(220, 220, 220, 0.8);
+	--table-odd: rgba(230, 230, 230, 0.8);
+	--table-hover: rgba(180, 140, 0, 0.15);
+	--link-color: #111;
+	--link-hover: #8B6914;
+	--hr-color: #999;
+	--prompt-color: #006666;
+}
+
 html, body {
 	padding: 0;
 	margin: 0;
-	background: #000;
-	color: #fff;
+	background: var(--bg);
+	color: var(--fg);
 	font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
 	font-size: 16px;
 	line-height: 1.5;
@@ -14,6 +54,7 @@ html, body {
 	font-variant: normal;
 	font-weight: 400;
 	height: 100vh;
+	transition: background 0.3s, color 0.3s;
 }
 
 #output {
@@ -114,68 +155,82 @@ html, body {
 
 #output a {
 	text-decoration: underline;
-	color: #fff;
+	color: var(--link-color);
 	font-weight: bold;
 }
 
 #output a:hover {
-	color: yellow;
+	color: var(--link-hover);
 }
 
 #output hr {
 	border: 0;
-	border-top: 2px dashed #fff;
+	border-top: 2px dashed var(--hr-color);
 }
 
 #output table th {
-    background: rgba(50, 50, 50, 0.9); /* Fond plus clair pour l'en-tête */
-    color: yellow; /* Couleur dorée pour le texte de l'en-tête */
-    font-weight: bold; /* Met le texte de l'en-tête en gras */
-    text-align: left; /* Alignement à gauche */
-    padding: 15px; /* Espace autour du texte dans les cellules d'en-tête */
-    border-bottom: 2px solid yellow; /* Bordure inférieure dorée pour l'en-tête */
+	background: var(--table-header-bg);
+	color: var(--table-header-color);
+	font-weight: bold;
+	text-align: left;
+	padding: 15px;
+	border-bottom: 2px solid var(--table-header-border);
 }
 
 #output table td {
-    min-width: 250px; /* Largeur minimale pour les cellules */
-    padding: 15px; /* Espace autour du contenu des cellules */
-    color: #fff; /* Couleur blanche pour le texte */
-    border: 1px solid #fff; /* Bordure blanche pour les cellules */
+	min-width: 250px;
+	padding: 15px;
+	color: var(--fg);
+	border: 1px solid var(--table-td-border);
 }
 
 #output table tr:nth-child(even) {
-    background: rgba(40, 40, 40, 0.8); /* Fond pour les lignes paires */
+	background: var(--table-even);
 }
 
 #output table tr:nth-child(odd) {
-    background: rgba(30, 30, 30, 0.8); /* Fond pour les lignes impaires */
+	background: var(--table-odd);
 }
 
 #output table tr:hover {
-    background: rgba(255, 204, 0, 0.2); /* Fond jaune clair au survol des lignes */
+	background: var(--table-hover);
 }
 
 #output .highlight {
-	color: yellow;
+	color: var(--highlight);
 }
 
 #output .error {
-	color: red;
+	color: var(--error);
 }
 
 #output .success {
-	color: cyan;
+	color: var(--success);
+}
+
+/* Command echo */
+.prompt-echo {
+	margin: 6px 0 2px;
+	white-space: normal;
+}
+
+.prompt-label {
+	color: var(--prompt-color);
+	margin-right: 8px;
+	user-select: none;
 }
 
 #input {
 	height: 50px;
 	width: 100vw;
 	position: relative;
+	background: var(--input-bg);
+	transition: background 0.3s;
 }
 
 #input input {
-	background: #1a1a1a;
-	color: #fff;
+	background: var(--input-bg);
+	color: var(--fg);
 	display: block;
 	font-family: Consolas, monaco, monospace;
 	font-size: 14px;
@@ -183,10 +238,11 @@ html, body {
 	font-variant: normal;
 	font-weight: 400;
 	line-height: 18.5714px;
-	padding: 10px 30px;
+	padding: 10px 10px 10px 190px;
 	border: 0;
 	height: 100%;
 	width: 100%;
+	transition: background 0.3s, color 0.3s;
 }
 
 #input input:focus {
@@ -196,9 +252,23 @@ html, body {
 #input::before {
 	position: absolute;
 	display: block;
-	content: ">";
-	color: #fff;
+	content: "hassen@portfolio:~$";
+	color: var(--prompt-color);
+	font-family: Consolas, monaco, monospace;
+	font-size: 14px;
 	left: 10px;
 	top: 16px;
 	z-index: 2;
+	user-select: none;
+}
+
+@media(max-width: 600px) {
+	#input::before {
+		content: "~$";
+		left: 10px;
+	}
+
+	#input input {
+		padding-left: 35px;
+	}
 }

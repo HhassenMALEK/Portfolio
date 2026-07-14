@@ -14,8 +14,14 @@ function escapeHTML(str) {
         .replace(/"/g, '&quot;');
 }
 
+// Restore saved theme
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') document.body.classList.add('light');
+
 const commandHistory = [];
 let historyIndex = -1;
+
+const HIDDEN_COMMANDS = ['init', 'ls', 'pwd', 'sudo', 'date'];
 
 document.getElementById('input-field').addEventListener('keydown', function(e) {
     if (e.key === 'ArrowUp') {
@@ -39,6 +45,20 @@ document.getElementById('input-field').addEventListener('keydown', function(e) {
         return;
     }
 
+    if (e.key === 'Tab') {
+        e.preventDefault();
+        const partial = this.value.trim().toLowerCase();
+        if (!partial) return;
+        const visibleCommands = Object.keys(commands).filter(cmd => !HIDDEN_COMMANDS.includes(cmd));
+        const matches = visibleCommands.filter(cmd => cmd.startsWith(partial));
+        if (matches.length === 1) {
+            this.value = matches[0];
+        } else if (matches.length > 1) {
+            appendOutput('<p>' + matches.join(' &nbsp;&nbsp; ') + '</p>');
+        }
+        return;
+    }
+
     if (e.key === 'Enter') {
         const input = this.value.trim().toLowerCase();
         this.value = '';
@@ -48,17 +68,27 @@ document.getElementById('input-field').addEventListener('keydown', function(e) {
 
         commandHistory.unshift(input);
 
+        // Echo the command typed
+        config.outputElement.innerHTML +=
+            '<p class="prompt-echo"><span class="prompt-label">hassen@portfolio:~$</span> ' + escapeHTML(input) + '</p>';
+
         if (commands[input]) {
             const result = commands[input]();
             if (typeof result === 'string' && result.length > 0) {
-                config.outputElement.innerHTML += result + '<br>';
-                config.outputElement.scrollTop = config.outputElement.scrollHeight;
+                appendOutput(result + '<br>');
             }
         } else {
-            config.outputElement.innerHTML += 'Unknown command: <span class="error">' + escapeHTML(input) + '</span>. Type <span class="highlight">help</span> to see available commands.<br>';
-            config.outputElement.scrollTop = config.outputElement.scrollHeight;
+            appendOutput(
+                '<p>Commande inconnue : <span class="error">' + escapeHTML(input) + '</span>. ' +
+                'Tapez <span class="highlight">help</span> pour voir les commandes disponibles.</p>'
+            );
         }
     }
 });
+
+function appendOutput(html) {
+    config.outputElement.innerHTML += html;
+    config.outputElement.scrollTop = config.outputElement.scrollHeight;
+}
 
 commands.init();
